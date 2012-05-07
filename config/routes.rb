@@ -15,4 +15,10 @@ PhoenixProvider::Application.routes.draw do
     root :to => "oauth_clients#index"
   end
   root :to => "home#index"
+  
+  namespace :api do
+    namespace :v1 do
+      match "data" => "data#show"
+    end
+  end
 end
