@@ -6,7 +6,8 @@ class OauthToken < ActiveRecord::Base
   before_validation :generate_keys, :on => :create
 
   attr_accessor :expires_at
-
+  attr_accessible :client_application, :user, :scope, :callback_url
+  
   def invalidated?
     invalidated_at != nil
   end
