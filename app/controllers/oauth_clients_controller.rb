@@ -28,6 +28,8 @@ class OauthClientsController < ApplicationController
   end
 
   def edit
+    @client_application = ClientApplication.find(params[:id])
+    logger.info "------------d-----------------------d--------------"
   end
 
   def update

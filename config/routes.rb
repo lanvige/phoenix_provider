@@ -1,6 +1,5 @@
 PhoenixProvider::Application.routes.draw do
 
-  resources :oauth_clients
   devise_for :users
   resources :users, :only => [:show, :index]
 
@@ -11,14 +10,17 @@ PhoenixProvider::Application.routes.draw do
   match '/oauth/authorize',     :to => 'oauth#authorize',     :as => :authorize
   match '/oauth',               :to => 'oauth#index',         :as => :oauth
 
+  resources :oauth_clients
+
+  root :to => "home#index"
   authenticated :user do
     root :to => "oauth_clients#index"
   end
-  root :to => "home#index"
-  
+
   namespace :api do
     namespace :v1 do
       match "data" => "data#show"
     end
   end
+
 end
